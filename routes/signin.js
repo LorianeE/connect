@@ -40,6 +40,7 @@ module.exports = function (server) {
       res.render('signin', {
         params: qs.stringify(req.query),
         request: req.query,
+        client: req.client,
         providers: visibleProviders,
         providerInfo: providerInfo,
         mailSupport: !!(mailer.transport)
@@ -65,6 +66,7 @@ module.exports = function (server) {
             res.render('signin', {
               params: qs.stringify(req.body),
               request: req.body,
+              client: req.client,
               providers: visibleProviders,
               providerInfo: providerInfo,
               mailSupport: !!(mailer.transport),
@@ -74,6 +76,7 @@ module.exports = function (server) {
             res.render('signin', {
               params: qs.stringify(req.body),
               request: req.body,
+              client: req.client,
               providers: visibleProviders,
               providerInfo: providerInfo,
               mailSupport: !!(mailer.transport),

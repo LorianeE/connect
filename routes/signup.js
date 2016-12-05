@@ -29,6 +29,7 @@ module.exports = function (server) {
       res.render('signup', {
         params: qs.stringify(req.query),
         request: req.query,
+        client: req.client,
         providers: settings.providers
       })
     }
@@ -44,6 +45,7 @@ module.exports = function (server) {
         res.render('signup', {
           params: qs.stringify(req.body),
           request: req.body,
+          client: req.client,
           providers: settings.providers,
           error: err.message
         })

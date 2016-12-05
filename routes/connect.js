@@ -75,6 +75,7 @@ module.exports = function (server) {
               params: qs.stringify(req.connectParams),
               request: req.body,
               error: info.message,
+              client: req.client,
               providers: visibleProviders,
               providerInfo: providerInfo,
               mailSupport: !!(mailer.transport)
