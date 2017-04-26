@@ -5,8 +5,11 @@
 
 [![Build Status](https://travis-ci.org/anvilresearch/connect.svg?branch=master)](https://travis-ci.org/anvilresearch/connect)
 [![Coverage Status](https://coveralls.io/repos/anvilresearch/connect/badge.svg?branch=master&service=github)](https://coveralls.io/github/anvilresearch/connect?branch=master)
-![Dependencies](https://img.shields.io/david/anvilresearch/connect.svg) ![License](https://img.shields.io/github/license/anvilresearch/connect.svg) ![Downloads](https://img.shields.io/npm/dm/anvil-connect.svg)
-![npm](https://img.shields.io/npm/v/anvil-connect.svg)
+[![npm version](https://badge.fury.io/js/ts-express-decorators.svg)](https://badge.fury.io/js/ts-express-decorators)
+[![Dependencies](https://david-dm.org/anvilresearch/connect.svg)](https://david-dm.org/anvilresearch/connect#info=dependencies)
+[![img](https://david-dm.org/anvilresearch/connect/dev-status.svg)](https://david-dm.org/anvilresearch/connect/#info=devDependencies)
+[![img](https://david-dm.org/anvilresearch/connect/peer-status.svg)](https://david-dm.org/anvilresearch/connect/#info=peerDependenciess)
+[![Known Vulnerabilities](https://snyk.io/test/github/anvilresearch/connect/badge.svg)](https://snyk.io/test/github/anvilresearch/connect)
 
 ### We're building a modern authorization server to authenticate your users and protect your APIs.
 
