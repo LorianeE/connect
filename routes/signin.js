@@ -62,6 +62,7 @@ module.exports = function (server) {
         next(new InvalidRequestError('Invalid provider'))
       } else {
         authenticator.dispatch(req.body.provider, req, res, next, function (err, user, info) {
+          delete req.body.password
           if (err) {
             res.render('signin', {
               params: qs.stringify(req.body),

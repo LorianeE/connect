@@ -42,6 +42,7 @@ module.exports = function (server) {
   function createUser (req, res, next) {
     User.insert(req.body, { private: true }, function (err, user) {
       if (err) {
+        delete req.body.password
         res.render('signup', {
           params: qs.stringify(req.body),
           request: req.body,
@@ -51,6 +52,7 @@ module.exports = function (server) {
         })
       } else {
         authenticator.dispatch('password', req, res, next, function (err, user, info) {
+          delete req.body.password
           if (err) { return next(err) }
           if (!user) {
           } else {
