@@ -119,7 +119,7 @@
     "lodash": "4.17.11",
     "mellt": "~1.0.0",
     "modinha": "^0.1.0",
-    "modinha-redis": "^0.1.0",
+    "modinha-redis": "camfou/modinha-redis#0ad801f8108dd332a2cdcff51d9f9f680a22e4c9",
     "nodemailer": "^4.0.1",
     "passport-adauth": "^0.1.2",
     "passport-ldapauth": "2.1.1",
