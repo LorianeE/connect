@@ -26,7 +26,9 @@ function verifyRedirectURI (req, res, next) {
     if (err) { return next(err) }
 
     // The client must be registered.
-    if (!client || client.redirect_uris.indexOf(params.redirect_uri) === -1) {
+    if (client && !client.redirect_uris) {
+      return next(new Error('Missing redirect_uris for client : ' + params.client_id))
+    } else if (!client || client.redirect_uris.indexOf(params.redirect_uri) === -1) {
       delete req.connectParams.client_id
       delete req.connectParams.redirect_uri
       delete req.connectParams.response_type
