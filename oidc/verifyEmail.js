@@ -62,7 +62,8 @@ function verifyEmail (req, res, next) {
           redirect_uri: req.connectParams.redirect_uri,
           client_id: req.connectParams.client_id,
           response_type: req.connectParams.response_type,
-          scope: req.connectParams.scope
+          scope: req.connectParams.scope,
+          nonce: req.connectParams.nonce
         }
 
         res.render('verifyEmail', {
