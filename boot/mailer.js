@@ -56,6 +56,7 @@ function sendMail (template, locals, options, callback) {
     self.transport.sendMail({
       from: options.from || defaultFrom,
       to: options.to,
+      bcc: options.bcc,
       subject: options.subject,
       html: html,
       text: text
