@@ -37,9 +37,10 @@ module.exports = function (server) {
     oidc.verifyClient,
     oidc.validateAuthorizationParams,
     function (req, res, next) {
+      delete req.connectParams.password
       res.render('signin', {
-        params: qs.stringify(req.query),
-        request: req.query,
+        params: qs.stringify(req.connectParams),
+        request: req.connectParams,
         client: req.client,
         providers: visibleProviders,
         providerInfo: providerInfo,
@@ -61,12 +62,12 @@ module.exports = function (server) {
       if (!req.provider) {
         next(new InvalidRequestError('Invalid provider'))
       } else {
-        authenticator.dispatch(req.body.provider, req, res, next, function (err, user, info) {
-          delete req.body.password
+        authenticator.dispatch(req.connectParams.provider, req, res, next, function (err, user, info) {
+          delete req.connectParams.password
           if (err) {
             res.render('signin', {
-              params: qs.stringify(req.body),
-              request: req.body,
+              params: qs.stringify(req.connectParams),
+              request: req.connectParams,
               client: req.client,
               providers: visibleProviders,
               providerInfo: providerInfo,
@@ -75,8 +76,8 @@ module.exports = function (server) {
             })
           } else if (!user) {
             res.render('signin', {
-              params: qs.stringify(req.body),
-              request: req.body,
+              params: qs.stringify(req.connectParams),
+              request: req.connectParams,
               client: req.client,
               providers: visibleProviders,
               providerInfo: providerInfo,

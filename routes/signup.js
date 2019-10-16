@@ -27,8 +27,8 @@ module.exports = function (server) {
     oidc.validateAuthorizationParams,
     function (req, res, next) {
       res.render('signup', {
-        params: qs.stringify(req.query),
-        request: req.query,
+        params: qs.stringify(req.connectParams),
+        request: req.connectParams,
         client: req.client,
         providers: settings.providers
       })
@@ -40,25 +40,24 @@ module.exports = function (server) {
    */
 
   function createUser (req, res, next) {
-    User.insert(req.body, { private: true }, function (err, user) {
+    User.insert(req.connectParams, { private: true }, function (err, user) {
       if (err) {
-        delete req.body.password
+        delete req.connectParams.password
         res.render('signup', {
-          params: qs.stringify(req.body),
-          request: req.body,
+          params: qs.stringify(req.connectParams),
+          request: req.connectParams,
           client: req.client,
           providers: settings.providers,
           error: err.message
         })
       } else {
         authenticator.dispatch('password', req, res, next, function (err, user, info) {
-          delete req.body.password
+          delete req.connectParams.password
           if (err) { return next(err) }
           if (!user) {
           } else {
             authenticator.login(req, user)
-            req.sendVerificationEmail =
-              req.provider.emailVerification.enable
+            req.sendVerificationEmail = req.provider.emailVerification.enable
             req.flash('isNewUser', true)
             next()
           }
