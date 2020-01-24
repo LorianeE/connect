@@ -55,7 +55,7 @@ function authorize (req, res, next) {
             client_id: req.client._id,
             redirect_uri: params.redirect_uri,
             nonce: params.nonce,
-            max_age: parseInt(params.max_age, 10) || req.client.default_max_age,
+            max_age: (!isNaN(params.max_age) && parseInt(params.max_age, 10)) || req.client.default_max_age,
             user_id: req.user._id,
             scope: req.scope
 
