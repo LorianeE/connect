@@ -167,15 +167,12 @@ AccessToken.issue = function (request, callback) {
     return callback(new Error('invalid_request'))
   }
 
+  var params = request.connectParams
   this.insert({
     iss: settings.issuer,
     uid: request.user._id,
     cid: request.client._id,
-    ei: (
-      request.connectParams &&
-      parseInt(request.connectParams.max_age, 10)
-    ) ||
-      request.client.default_max_age,
+    ei: (params && !isNaN(params.max_age) && parseInt(params.max_age, 10)) || request.client.default_max_age,
     scope: request.scope
   }, function (err, token) {
     if (err) { return callback(err) }
