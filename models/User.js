@@ -8,7 +8,7 @@ var providers = require('../providers')
 var bcrypt = require('bcryptjs')
 var CheckPassword = require('mellt').CheckPassword
 var Modinha = require('modinha')
-var Document = require('modinha-redis')
+var Document = require('camfou-modinha-redis')
 var PasswordRequiredError = require('../errors/PasswordRequiredError')
 var InsecurePasswordError = require('../errors/InsecurePasswordError')
 

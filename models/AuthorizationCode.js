@@ -4,7 +4,7 @@
 
 var client = require('../boot/redis').getClient()
 var Modinha = require('modinha')
-var Document = require('modinha-redis')
+var Document = require('camfou-modinha-redis')
 var nowSeconds = require('../lib/time-utils').nowSeconds
 
 /**
