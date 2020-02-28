@@ -225,7 +225,7 @@ describe 'OAuth2 Strategy', ->
 
       it 'should include scope', ->
         strategy.redirect.should.have.been.calledWith sinon.match(
-          'scope=a%20b%20c'
+          'scope=a+b+c'
         )
 
       it 'should include state', ->

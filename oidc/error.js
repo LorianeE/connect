@@ -27,7 +27,7 @@ function error (err, req, res, next) {
   } else if (err.name === 'ValidationError') {
     res.set({
       'Cache-Control': 'no-store',
-      'Pragma': 'no-cache'
+      Pragma: 'no-cache'
     })
 
     res.status(400).json({
@@ -40,7 +40,7 @@ function error (err, req, res, next) {
   } else if (err.statusCode === 400) {
     res.set({
       'Cache-Control': 'no-store',
-      'Pragma': 'no-cache'
+      Pragma: 'no-cache'
     })
 
     res.status(400).json({

@@ -22,7 +22,7 @@ module.exports = function (server) {
       // don't cache this response
       res.set({
         'Cache-Control': 'no-store',
-        'Pragma': 'no-cache'
+        Pragma: 'no-cache'
       })
 
       // respond with decoded/retrieved claims

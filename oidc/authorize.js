@@ -118,7 +118,7 @@ function authorize (req, res, next) {
       if (responseMode === 'form_post') {
         res.set({
           'Cache-Control': 'no-cache, no-store',
-          'Pragma': 'no-cache'
+          Pragma: 'no-cache'
         })
         res.render('form_post', {
           redirect_uri: params.redirect_uri,

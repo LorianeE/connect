@@ -1,5 +1,3 @@
-/* global process */
-
 /**
  * Module dependencies
  */

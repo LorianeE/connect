@@ -5,7 +5,7 @@
 var settings = require('../boot/settings')
 var User = require('../models/User')
 var OneTimeToken = require('../models/OneTimeToken')
-var url = require('url')
+var { URL } = require('url')
 
 /**
  * Verify Email
@@ -55,20 +55,18 @@ function verifyEmail (req, res, next) {
 
       // check that the redirect uri is valid and safe to use
       if (req.client && req.connectParams.redirect_uri) {
-        var continueURL = url.parse(settings.issuer)
+        var continueURL = new URL(settings.issuer)
 
         continueURL.pathname = 'signin'
-        continueURL.query = {
-          redirect_uri: req.connectParams.redirect_uri,
-          client_id: req.connectParams.client_id,
-          response_type: req.connectParams.response_type,
-          scope: req.connectParams.scope,
-          nonce: req.connectParams.nonce
-        }
+        continueURL.searchParams.set('redirect_uri', req.connectParams.redirect_uri)
+        continueURL.searchParams.set('client_id', req.connectParams.client_id)
+        continueURL.searchParams.set('response_type', req.connectParams.response_type)
+        continueURL.searchParams.set('scope', req.connectParams.scope)
+        continueURL.searchParams.set('nonce', req.connectParams.nonce)
 
         res.render('verifyEmail', {
           signin: {
-            url: url.format(continueURL),
+            url: continueURL.toString(),
             client: req.client
           }
         })

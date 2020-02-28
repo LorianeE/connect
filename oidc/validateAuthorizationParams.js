@@ -92,7 +92,7 @@ function validateAuthorizationParams (req, res, next) {
         return responseTypeString.trim().split(' ')
       })
       // Otherwise, return an array with the default set, [ 'code' ]
-      : [ [ 'code' ] ]
+      : [['code']]
 
   // In the array of response_types in the settings...
   var isSupportedResponseType = settings.response_types_supported

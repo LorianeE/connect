@@ -14,7 +14,7 @@
 var Role = require('../models/Role')
 var mailer = require('../boot/mailer').getMailer()
 var settings = require('../boot/settings')
-var url = require('url')
+var { URL } = require('url')
 
 /**
  * Require verified email middleware
@@ -44,23 +44,20 @@ module.exports = function (options) {
       } else if (!options.force && !req.provider.emailVerification.require) {
         next()
       } else {
-        var resendURL = url.parse(settings.issuer)
+        var resendURL = new URL(settings.issuer)
 
         resendURL.pathname = 'email/resend'
-        resendURL.query = {
-          email: req.user.email
-        }
-
+        resendURL.searchParams.set('email', req.user.email)
         if (req.connectParams) {
-          resendURL.query.redirect_uri = req.connectParams.redirect_uri
-          resendURL.query.client_id = req.connectParams.client_id
-          resendURL.query.response_type = req.connectParams.response_type
-          resendURL.query.scope = req.connectParams.scope
+          resendURL.searchParams.set('redirect_uri', req.connectParams.redirect_uri)
+          resendURL.searchParams.set('client_id', req.connectParams.client_id)
+          resendURL.searchParams.set('response_type', req.connectParams.response_type)
+          resendURL.searchParams.set('scope', req.connectParams.scope)
         }
 
         var existingUserMsg = 'E-mail verification is required to proceed'
         var newUserMsg = 'Congratulations on creating your user account! ' +
-          "All that's left now is to verify your e-mail."
+          'All that\'s left now is to verify your e-mail.'
 
         var isNewUser = req.flash('isNewUser').indexOf(true) !== -1
 
@@ -70,7 +67,7 @@ module.exports = function (options) {
           message: options.locals.message === undefined
             ? (isNewUser ? newUserMsg : undefined) : options.locals.message,
           from: options.locals.from || mailer.from,
-          resendURL: options.locals.resendURL || url.format(resendURL)
+          resendURL: options.locals.resendURL || resendURL.toString()
         }
         res.render(options.view, locals)
       }

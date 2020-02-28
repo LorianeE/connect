@@ -11,7 +11,7 @@ var UnauthorizedError = require('../errors/UnauthorizedError')
  */
 
 function verifyClientToken (req, res, next) {
-  var header = req.headers['authorization']
+  var header = req.headers.authorization
 
   // missing header
   if (!header) {

@@ -48,7 +48,7 @@ module.exports = function (server) {
           // 5. Register client
           Client.insert({
             client_name: 'Anvil Connect CLI',
-            redirect_uris: [ settings.issuer ],
+            redirect_uris: [settings.issuer],
             trusted: true
           }, function (err, client) {
             if (err) { return next(err) }

@@ -13,8 +13,8 @@ module.exports = function (server) {
   server.get('/', function (req, res, next) {
     res.json({
       'Anvil Connect': 'Welcome',
-      'issuer': settings.issuer,
-      'version': pkg.version
+      issuer: settings.issuer,
+      version: pkg.version
     })
   })
 }

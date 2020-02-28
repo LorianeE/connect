@@ -478,7 +478,7 @@ if (!settings.issuer) {
 if (!settings.providers.password) {
   settings.providers.password = {
     hidden: true,
-    allowRoles: [ 'authority' ]
+    allowRoles: ['authority']
   }
 } else if (settings.providers.password.allowRoles) {
   if (settings.providers.password.allowRoles.indexOf('authority') === -1) {

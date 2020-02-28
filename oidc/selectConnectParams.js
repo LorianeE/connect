@@ -7,8 +7,8 @@
  */
 
 var lookupField = {
-  'GET': 'query',
-  'POST': 'body'
+  GET: 'query',
+  POST: 'body'
 }
 
 /**

@@ -107,27 +107,27 @@ function hashPassword (data) {
  */
 
 User.mappings.userinfo = {
-  '_id': 'sub',
-  'name': 'name',
-  'givenName': 'given_name',
-  'familyName': 'family_name',
-  'middleName': 'middle_name',
-  'nickname': 'nickname',
-  'preferredUsername': 'preferred_username',
-  'profile': 'profile',
-  'picture': 'picture',
-  'website': 'website',
-  'email': 'email',
-  'emailVerified': 'email_verified',
-  'gender': 'gender',
-  'birthdate': 'birthdate',
-  'zoneinfo': 'zoneinfo',
-  'locale': 'locale',
-  'phoneNumber': 'phone_number',
-  'phoneNumberVerified': 'phone_number_verified',
-  'address': 'address',
-  'created': 'joined_at',
-  'modified': 'updated_at'
+  _id: 'sub',
+  name: 'name',
+  givenName: 'given_name',
+  familyName: 'family_name',
+  middleName: 'middle_name',
+  nickname: 'nickname',
+  preferredUsername: 'preferred_username',
+  profile: 'profile',
+  picture: 'picture',
+  website: 'website',
+  email: 'email',
+  emailVerified: 'email_verified',
+  gender: 'gender',
+  birthdate: 'birthdate',
+  zoneinfo: 'zoneinfo',
+  locale: 'locale',
+  phoneNumber: 'phone_number',
+  phoneNumberVerified: 'phone_number_verified',
+  address: 'address',
+  created: 'joined_at',
+  modified: 'updated_at'
 }
 
 /**

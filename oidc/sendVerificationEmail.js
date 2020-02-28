@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-var url = require('url')
+var { URL } = require('url')
 var mailer = require('../boot/mailer')
 var settings = require('../boot/settings')
 var OneTimeToken = require('../models/OneTimeToken')
@@ -15,7 +15,7 @@ function sendVerificationEmail (req, res, next) {
   if (!req.sendVerificationEmail) {
     next()
 
-  // send the email
+    // send the email
   } else {
     var user = req.user
 
@@ -30,22 +30,17 @@ function sendVerificationEmail (req, res, next) {
     }, function (err, token) {
       if (err) { return next(err) }
 
-      var params = {
-        token: token._id
-      }
-
-      ;[ 'redirect_uri', 'client_id', 'response_type', 'scope', 'nonce' ]
+      // build email link
+      var verifyURL = new URL(settings.issuer)
+      verifyURL.pathname = 'email/verify'
+      verifyURL.searchParams.set('token', token._id)
+      ;['redirect_uri', 'client_id', 'response_type', 'scope', 'nonce']
         .forEach(function (key) {
           var value = req.connectParams[key]
           if (value) {
-            params[key] = value
+            verifyURL.searchParams.set(key, value)
           }
         })
-
-      // build email link
-      var verifyURL = url.parse(settings.issuer)
-      verifyURL.pathname = 'email/verify'
-      verifyURL.query = params
 
       // email template data
       var locals = {
@@ -54,7 +49,7 @@ function sendVerificationEmail (req, res, next) {
           first: user.givenName,
           last: user.familyName
         },
-        verifyURL: url.format(verifyURL)
+        verifyURL: verifyURL.toString()
       }
 
       // Send verification email

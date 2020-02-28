@@ -64,7 +64,7 @@ function token (req, res, next) {
 
     res.set({
       'Cache-Control': 'no-store',
-      'Pragma': 'no-cache'
+      Pragma: 'no-cache'
     })
 
     res.json(response)
@@ -94,7 +94,7 @@ function token (req, res, next) {
 
       res.set({
         'Cache-Control': 'no-store',
-        'Pragma': 'no-cache'
+        Pragma: 'no-cache'
       })
 
       var response = {

@@ -60,7 +60,7 @@ module.exports = function (server) {
 
           res.set({
             'Cache-Control': 'no-store',
-            'Pragma': 'no-cache'
+            Pragma: 'no-cache'
           })
 
           res.status(201).json(client.configuration(settings, token))

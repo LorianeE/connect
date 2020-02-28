@@ -128,17 +128,17 @@ AccessToken.exists = function (userId, clientId, callback) {
  */
 
 AccessToken.mappings.issue = {
-  'at': 'access_token',
-  'tt': 'token_type',
-  'ei': 'expires_in',
-  'rt': 'refresh_token'
+  at: 'access_token',
+  tt: 'token_type',
+  ei: 'expires_in',
+  rt: 'refresh_token'
 }
 
 AccessToken.mappings.exchange = {
-  'cid': 'client_id',
-  'uid': 'user_id',
-  'ei': 'max_age',
-  'scope': 'scope'
+  cid: 'client_id',
+  uid: 'user_id',
+  ei: 'max_age',
+  scope: 'scope'
 }
 
 /**

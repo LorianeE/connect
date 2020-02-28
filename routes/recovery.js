@@ -2,7 +2,7 @@
  * Module dependencies
  */
 
-var url = require('url')
+var { URL } = require('url')
 var revalidator = require('revalidator')
 var settings = require('../boot/settings')
 var mailer = require('../boot/mailer').getMailer()
@@ -103,13 +103,13 @@ module.exports = function (server) {
         }, function (err, token) {
           if (err) { return next(err) }
 
-          var resetPasswordURL = url.parse(settings.issuer)
+          var resetPasswordURL = new URL(settings.issuer)
           resetPasswordURL.pathname = 'resetPassword'
-          resetPasswordURL.query = { token: token._id }
+          resetPasswordURL.searchParams.set('token', token._id)
 
           mailer.sendMail('resetPassword', {
             email: user.email,
-            resetPasswordURL: url.format(resetPasswordURL)
+            resetPasswordURL: resetPasswordURL.toString()
           }, {
             to: user.email,
             subject: 'Reset your password'
@@ -160,12 +160,12 @@ module.exports = function (server) {
         OneTimeToken.revoke(req.passwordResetToken._id, function (err) {
           if (err) { return next(err) }
 
-          var recoveryURL = url.parse(settings.issuer)
+          var recoveryURL = new URL(settings.issuer)
           recoveryURL.pathname = 'recovery'
 
           mailer.sendMail('passwordChanged', {
             email: user.email,
-            recoveryURL: url.format(recoveryURL)
+            recoveryURL: recoveryURL.toString()
           }, {
             to: user.email,
             subject: 'Your password has been changed'

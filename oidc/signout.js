@@ -65,7 +65,7 @@ function signout (req, res, next) {
 function emptyresponse (res) {
   res.set({
     'Cache-Control': 'no-store',
-    'Pragma': 'no-cache'
+    Pragma: 'no-cache'
   })
   return res.sendStatus(204)
 }

@@ -11,7 +11,7 @@ module.exports = function session (req, res, next) {
   // Don't cache the response
   res.set({
     'Cache-Control': 'no-store',
-    'Pragma': 'no-cache'
+    Pragma: 'no-cache'
   })
 
   res.render('session')
