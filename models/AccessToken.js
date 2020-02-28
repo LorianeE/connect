@@ -92,7 +92,8 @@ AccessToken.defineIndex({
   type: 'sorted',
   key: ['users:$:clients', 'uid'],
   score: 'created',
-  member: 'cid'
+  member: 'cid',
+  ttl: 60 * 60 * 24 * 30
 })
 
 /**
@@ -270,7 +271,7 @@ AccessToken.verify = function (token, options, callback) {
           done(null, decoded)
         }
 
-      // the token is not a JWT
+        // the token is not a JWT
       } else {
         done()
       }
@@ -305,7 +306,7 @@ AccessToken.verify = function (token, options, callback) {
           })
         })
 
-      // the token is not random
+        // the token is not random
       } else {
         done()
       }
